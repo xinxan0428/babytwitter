@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tweets Searcher</title>
+	<link rel="stylesheet" href="css/demo.css" type="text/css" /> 
+
+</head>
+<body>
+<background> <img src="img/panda.gif"/ width ="60%" height="100%"><background/>
+	<div id="twitterSearchApp">
+		<div id="mainColumn">
+			<div id="searchbar">
+				 
+				<div id="create-search">
+					<h1><img src="img/cooltext758758511.gif" width="60%" height="150%"/></h1>
+					<div id="searchform">
+						<input id="search-query" type="text" />
+						<button id="submit-search">SEARCH</button>
+						<img class="loading-icon" src="img/21.gif" alt="loading" />
+					</div>
+				</div>
+			</div>
+			<div id="container">
+				<div id="monitor">
+					<div id="twitter-feed"></div>
+					
+				</div>
+
+			</div>
+			
+		</div>
+	</div>
+	
+    <script src="lib/jquery.js"></script>
+    <script src="lib/underscore.js"></script>
+    <script src="lib/backbone.js"></script>
+    <script src="lib/mustache.js"></script>
+    <script src="app.js"></script>
+    
+    
+    
+    <script type="text/javascript">
+	(function ($) {
+		// Create our models
+		var query = new TwitterSearch();
+		
+		// Add views
+		var createSearchView = new CreateSearchView({
+			el: $("#create-search"),
+			model: query
+		});
+		
+		var tweetList = new TweetListView({
+			el: $("#twitter-feed"),
+			collection: query.displayedTweets
+		});
+		tweetList.render();
+	})(jQuery);
+    </script>
+</body>
+</html>
